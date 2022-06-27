@@ -35,7 +35,10 @@
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ]
+    ],
+    "no-use-before-define": "off",
+    "no-unused-vars": "warn",
+    "no-console": "warn"
   },
   "settings": {
     "import/resolver": {
