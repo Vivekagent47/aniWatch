@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LoginImg from "../../assets/Login.webp";
 import Gmail from "../../assets/Gmail";
 import Facebook from "../../assets/Facebook";
@@ -9,7 +10,7 @@ const Login = () => (
     <img
       className=" h-1/3 w-screen aspect-auto"
       src={LoginImg}
-      alt="Onboarding 1"
+      alt="Login Img"
     />
     <div className="w-full flex-1 px-8 pt-10">
       <span className="text-2xl font-bold text-dark-blue">
@@ -38,7 +39,7 @@ const Login = () => (
           <Facebook height="24px" width="24px" />
           <Twitter height="24px" width="24px" />
         </div>
-        <span className="text-xs text-gray">Forget Password</span>
+        <span className="text-xs text-gray">Forget Password?</span>
       </div>
     </div>
     <div className="w-full px-8 mb-8 text-center">
@@ -52,7 +53,9 @@ const Login = () => (
       <div className="mt-2">
         <span className="text-xs text-gray">
           Don&apos;t Have An Account yet?
-          <span className="text-blue font-bold px-2">Register</span>
+          <Link to="/signup" className="text-blue font-bold px-2">
+            Register
+          </Link>
         </span>
       </div>
     </div>
