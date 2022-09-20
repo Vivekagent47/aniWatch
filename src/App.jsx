@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import FirstPage from "./pages/FirstPage/FirstPage";
 // import Onboarding from "./pages/Onboarding/Onboarding";
 import Routing from "./Routing";
+import Navbar from "./components/Navbar";
 
 function App() {
   // gsap.registerPlugin(ScrollTrigger);
@@ -27,7 +28,18 @@ function App() {
     setIsDesktop(result);
   }, [isDesktop]);
 
-  return <div>{isLoading ? <FirstPage /> : <Routing />}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <FirstPage />
+      ) : (
+        <div>
+          <Routing />
+          <Navbar />
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;
