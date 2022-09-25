@@ -71,7 +71,33 @@ const Home = () => (
             <span className="text-blue font-bold text-sm">$50-$150</span>
           </div>
           <div className=" relative">
-            <Heart width="20px" height="20px" classSvg="fill-red" />
+            <Heart width="16px" height="16px" classSvg="stroke-gray" />
+          </div>
+        </div>
+      </div>
+
+      <div className="p-2 flex items-start justify-start bg-white rounded-lg">
+        <img
+          className=" w-1/3 h-[110px] object-cover rounded-lg"
+          src={Card1}
+          alt="Office preview"
+        />
+        <div className="flex flex-1 align-top text-center sm:text-left h-full ml-2">
+          <div className="flex flex-col relative flex-1 space-y-2 justify-start items-start text-left mr-1">
+            <span className="text-dark-blue font-bold text-xs">
+              Cognitive Coffee & Co-working Space
+            </span>
+            <p className="text-gray text-[10px] overflow-hidden text-ellipsis whitespace-nowrap w-48">
+              Jl. Duvet III No.2, Karangasem, Kec. Lawman New York, United State
+            </p>
+            <div className="flex justify-start items-center">
+              <Star width="12px" height="12px" classSvg="fill-yellow" />
+              <span className="ml-1 text-[9px] text-gray">4.5</span>
+            </div>
+            <span className="text-blue font-bold text-sm">$50-$150</span>
+          </div>
+          <div className="relative">
+            <Heart width="16px" height="16px" classSvg="fill-red" />
           </div>
         </div>
       </div>
@@ -98,34 +124,7 @@ const Home = () => (
             <span className="text-blue font-bold text-sm">$50-$150</span>
           </div>
           <div className=" relative">
-            <Heart width="20px" height="20px" classSvg="fill-red" />
-          </div>
-        </div>
-      </div>
-
-      <div className="p-2 flex items-start justify-start bg-white rounded-lg">
-        <img
-          className=" w-1/3 h-[110px] object-cover rounded-lg"
-          src={Card1}
-          alt="Office preview"
-        />
-        <div className="flex flex-1 align-top text-center sm:text-left h-full ml-2">
-          <div className="flex flex-col relative flex-1 space-y-2 justify-start items-start text-left">
-            <span className="text-dark-blue font-bold text-xs">
-              Kognitif Coffee & Co-working Space
-            </span>
-            <p className="text-gray text-[10px] overflow-hidden text-ellipsis whitespace-nowrap w-48">
-              Jl. Duwet III No.2, Karangasem, Kec. Laweyan New York, United
-              State
-            </p>
-            <div className="flex justify-start items-center">
-              <Star width="12px" height="12px" classSvg="fill-yellow" />
-              <span className="ml-1 text-[9px] text-gray">4.5</span>
-            </div>
-            <span className="text-blue font-bold text-sm">$50-$150</span>
-          </div>
-          <div className=" relative">
-            <Heart width="20px" height="20px" classSvg="fill-red" />
+            <Heart width="16px" height="16px" classSvg="fill-red" />
           </div>
         </div>
       </div>
