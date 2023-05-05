@@ -23,14 +23,14 @@ const ChildOnboard = ({
   <div className="flex justify-center items-start flex-col h-screen">
     <img className=" h-2/3 w-screen aspect-auto" src={image} alt="Onboarding" />
     <div className="flex justify-center items-start flex-col flex-1 p-8 w-full">
-      <span className="text-3xl  text-dark-blue">
+      <span className="text-3xl  text-blue-700">
         {title}
-        <br /> <span className=" font-bold">{subTitle}</span>
+        <br /> <span className=" font-bold text-blue-700">{subTitle}</span>
       </span>
       <div className="flex justify-between items-center w-full mt-4">
-        <span className="text-sm w-2/3  text-gray">{detail}</span>
+        <span className="text-sm w-2/3  text-gary-700">{detail}</span>
         <div
-          className="bg-dark-blue p-4 rounded-lg"
+          className="bg-blue-700 p-4 rounded-lg"
           onClick={() => stepIncrease()}
         >
           <Angel width="16px" height="16px" classSvg="fill-white" />
