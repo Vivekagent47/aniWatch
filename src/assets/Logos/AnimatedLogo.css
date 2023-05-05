@@ -1,0 +1,64 @@
+#upper_group {
+  animation: upper_group_animation 1000ms ease-in-out 1 normal forwards;
+}
+@keyframes upper_group_animation {
+  0% {
+    transform: translate(56.96463px, 34.87px);
+  }
+  100% {
+    transform: translate(56.96463px, 17.87px);
+  }
+}
+
+#lower_group {
+  animation: lower_group_animation 1000ms ease-in-out 1 normal forwards;
+}
+@keyframes lower_group_animation {
+  0% {
+    transform: translate(21.184532px, 0px);
+  }
+  100% {
+    transform: translate(21.184532px, 17.5px);
+  }
+}
+
+#skew_scale_group {
+  animation: scale_skew_animation 1000ms ease-in-out 1 normal forwards;
+}
+@keyframes scale_skew_animation {
+  0% {
+    transform: scale(0, 0) skew(0deg, 0deg);
+  }
+  25% {
+    transform: scale(0.25, 0.25) skew(20deg, 20deg);
+  }
+  75% {
+    transform: scale(0.75, 0.75) skew(-20deg, -20deg);
+  }
+  100% {
+    transform: scale(1, 1) skew(0deg, 0deg);
+  }
+}
+
+#opacity_path {
+  animation: opacity_animation 1000ms ease-in-out 1 normal forwards;
+}
+@keyframes opacity_animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes name_appear {
+  0% {
+    opacity: 0;
+    transform: scale(10, 10) translateY(10px);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0px);
+    opacity: 1;
+  }
+}

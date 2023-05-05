@@ -10,7 +10,7 @@ const Navbar = () => {
     const path = location.pathname;
     const notLogin = window.localStorage.getItem("user");
 
-    if (path === "/" || !notLogin) setActiveNav("none");
+    if (path === "/" && !notLogin) setActiveNav("none");
     else if (path === "/home") setActiveNav("home");
     else if (path === "/profile") setActiveNav("profile");
     else if (path === "/events") setActiveNav("events");
