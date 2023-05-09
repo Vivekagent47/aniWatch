@@ -1,6 +1,14 @@
-import Axios from "@/utils/Axios";
+import Axios, { BaseUrl } from "@/utils/Axios";
 
-export const login = async (email: string, password: string) => {
+export const login = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  console.log(BaseUrl);
+
   const response = await Axios({
     method: "POST",
     url: "/auth/login",
@@ -13,15 +21,20 @@ export const login = async (email: string, password: string) => {
   return response.data;
 };
 
-export const register = async (
-  email: string,
-  password: string,
-  first_name: string,
-  last_name: string,
-) => {
+export const register = async ({
+  email,
+  password,
+  first_name,
+  last_name,
+}: {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+}) => {
   const response = await Axios({
     method: "POST",
-    url: "/auth/register",
+    url: "/auth/signup",
     data: {
       email,
       password,

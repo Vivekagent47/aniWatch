@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { ReactQueryDevtools } from "react-query/devtools";
 // import Navbar from "@/components/Navbar";
 import Routing from "@/Routing";
 import Logo from "@/assets/Logos/AnimatedLogo";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,17 +13,9 @@ function App() {
     }, 3000);
   }, []);
 
-  useEffect(() => {
-    const result =
-      typeof window.orientation === "undefined" &&
-      navigator.userAgent.indexOf("IEMobile") === -1;
-    window.history.scrollRestoration = "manual";
-
-    setIsDesktop(result);
-  }, [isDesktop]);
-
   return (
     <div>
+      <ReactQueryDevtools />
       {isLoading ? (
         <div className="flex justify-center items-center flex-col h-screen p-4 pb-16">
           <div className="flex justify-center items-center flex-col flex-1 gap-8">
@@ -46,7 +38,6 @@ function App() {
       ) : (
         <div>
           <Routing />
-          {/* <Navbar /> */}
         </div>
       )}
     </div>
