@@ -1,4 +1,4 @@
-import Axios, { BaseUrl } from "@/utils/Axios";
+import Axios from "@/utils/Axios";
 
 export const login = async ({
   email,
@@ -7,8 +7,6 @@ export const login = async ({
   email: string;
   password: string;
 }) => {
-  console.log(BaseUrl);
-
   const response = await Axios({
     method: "POST",
     url: "/auth/login",

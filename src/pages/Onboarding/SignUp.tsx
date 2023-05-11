@@ -1,9 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { toast } from "react-hot-toast";
 import SignUpImg from "@/assets/images/SignUp.webp";
+import apis from "@/apis";
+import { AuthContext } from "@/context/AuthContext";
+import { IAuthRequest } from "@/interfaces";
 // import { Gmail, Facebook, Twitter } from "@/assets/icons";
 
 const SignUp = () => {
+  const { setUpStorge } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [passwordCheck, setPasswordCheck] = React.useState(true);
   const [signUpData, setSignUpData] = React.useReducer(
     (
@@ -38,6 +45,52 @@ const SignUp = () => {
       last_name: "",
     },
   );
+
+  const signUp = useMutation(
+    "signUp",
+    () => {
+      if (!passwordCheck) {
+        return Promise.reject({ message: "Password Not Matched" });
+      }
+      return apis.auth.register({
+        email: signUpData.email,
+        password: signUpData.password,
+        first_name: signUpData.firts_name,
+        last_name: signUpData.last_name,
+      });
+    },
+    {
+      onError: (error: {
+        message: string;
+        response: {
+          data: {
+            message: string;
+          };
+        };
+      }) => {
+        toast.error(
+          error.response?.data?.message ||
+            error.message ||
+            "Something Went Wrong!",
+        );
+      },
+      onSuccess: (data: IAuthRequest) => {
+        setUpStorge({
+          access_token: data.token.access_token,
+          refresh_token: data.token.refresh_token,
+          userData: data.user,
+        });
+        navigate("/home");
+      },
+    },
+  );
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <div className="flex justify-center items-start flex-col h-screen">
@@ -146,7 +199,7 @@ const SignUp = () => {
         <button
           className="bg-blue-700 text-sm text-white font-semibold rounded-lg border-none shadow-md w-full py-4 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           type="button"
-          // onClick={() => console.log("Signup")}
+          onClick={() => signUp.mutate()}
         >
           Signup
         </button>
