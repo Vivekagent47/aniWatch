@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 // import Navbar from "@/components/Navbar";
 import Routing from "@/Routing";
 import Logo from "@/assets/Logos/AnimatedLogo";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,9 +16,15 @@ function App() {
     }, 3000);
   }, []);
 
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div>
-      <ReactQueryDevtools />
       {isLoading ? (
         <div className="flex justify-center items-center flex-col h-screen p-4 pb-16">
           <div className="flex justify-center items-center flex-col flex-1 gap-8">
@@ -40,6 +49,8 @@ function App() {
           <Routing />
         </div>
       )}
+      <ReactQueryDevtools />
+      <Toaster position="bottom-center" />
     </div>
   );
 }

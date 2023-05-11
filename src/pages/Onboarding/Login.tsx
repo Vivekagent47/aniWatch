@@ -1,11 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
+import { toast } from "react-hot-toast";
 import apis from "@/apis";
 import LoginImg from "@/assets/images/Login.webp";
+import { AuthContext } from "@/context/AuthContext";
+import { IAuthRequest } from "@/interfaces";
 // import { Gmail, Facebook, Twitter } from "@/assets/icons";
 
 const Login = () => {
+  const { setUpStorge } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [loginData, setLoginData] = React.useReducer(
     (
       state: {
@@ -22,9 +27,38 @@ const Login = () => {
     { email: "", password: "" },
   );
 
-  const login = useMutation("login", () => {
-    return apis.auth.login(loginData);
-  });
+  const login = useMutation(
+    "login",
+    () => {
+      return apis.auth.login(loginData);
+    },
+    {
+      onError: (error: {
+        response: {
+          data: {
+            message: string;
+          };
+        };
+      }) => {
+        toast.error(error.response?.data?.message || "Something Went Wrong!");
+      },
+      onSuccess: (data: IAuthRequest) => {
+        setUpStorge({
+          access_token: data.token.access_token,
+          refresh_token: data.token.refresh_token,
+          userData: data.user,
+        });
+        navigate("/home");
+      },
+    },
+  );
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <form className="flex justify-center items-start flex-col h-screen">

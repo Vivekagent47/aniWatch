@@ -1,7 +1,17 @@
+import { IUser } from "@/interfaces";
 import React from "react";
 
 export interface IAuthContext {
-  user: string;
+  logedIn: boolean;
+  setUpStorge: ({
+    access_token,
+    refresh_token,
+    userData,
+  }: {
+    access_token: string;
+    refresh_token: string;
+    userData: IUser;
+  }) => void;
 }
 
 export const AuthContext = React.createContext<IAuthContext>(
@@ -11,10 +21,26 @@ export const AuthContext = React.createContext<IAuthContext>(
 export const useAuth = () => React.useContext(AuthContext);
 
 const useProviderAuth = () => {
-  const user = "dsbhj";
+  const [logedIn, setLogedIn] = React.useState(false);
+
+  const setUpStorge = ({
+    access_token,
+    refresh_token,
+    userData,
+  }: {
+    access_token: string;
+    refresh_token: string;
+    userData: IUser;
+  }) => {
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("access_token", access_token);
+    localStorage.setItem("refresh_token", refresh_token);
+    setLogedIn(true);
+  };
 
   return {
-    user,
+    logedIn,
+    setUpStorge,
   };
 };
 
